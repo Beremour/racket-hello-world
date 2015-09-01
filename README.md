@@ -1,2 +1,2 @@
-# racket-hello-world
-Racket Hello World
+# Racket Hello World
+git clone git@github.com:beremour/racket-hello-world.git
