@@ -5,6 +5,7 @@
 #lang racket/base
 (require "hello-world-mod1.rkt" "hello-world-mod2.rkt")
 (+ b c)
+(* b c)
 (+ b c b c b)
 (display "\u03BB")
 (newline)
