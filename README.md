@@ -9,3 +9,6 @@ git config user.email "user@email.com"
 --
 git add %file_path%
 git commit -m "%commit_message%"
+--
+git log
+git log --name-only
