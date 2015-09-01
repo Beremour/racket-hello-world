@@ -14,6 +14,6 @@ git log
 git log --name-only
 --
 git add README.md
-git commit -m "1st commit"
+git commit -m "Commit comment"
 git push
-git push origin master
+-- git push origin master
