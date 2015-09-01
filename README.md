@@ -5,6 +5,7 @@ https://github.com/andreiled/mipt-cs-4sem/wiki/Пошаговая-инструк
 git clone git@github.com:beremour/racket-hello-world.git
 cd racket-hello-world
 git config user.name "beremour"
+git config user.name "Sergey Yudin"
 git config user.email "user@email.com"
 git config push.default simple
 --
