@@ -1,7 +1,7 @@
 #! /usr/bin/env racket
-; raco make ...
-; raco exe  ..
-; raco exe --gui ..
+; raco make $*
+; raco exe  $*
+; raco exe --gui $*
 #lang racket/base
 (require "b.rkt" "c.rkt")
 (+ b c)
