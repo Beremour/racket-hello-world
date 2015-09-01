@@ -12,3 +12,8 @@ git commit -m "%commit_message%"
 --
 git log
 git log --name-only
+--
+git add README.md
+git commit -m "1st commit"
+git push
+git push origin master
