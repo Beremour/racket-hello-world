@@ -3,7 +3,7 @@
 ; raco exe  $*
 ; raco exe --gui $*
 #lang racket/base
-(require "b.rkt" "c.rkt")
+(require "hello-world-mod1.rkt" "hello-world-mod2.rkt")
 (+ b c)
 (+ b c b c b)
 (display "\u03BB")
