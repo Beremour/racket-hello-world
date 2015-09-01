@@ -6,6 +6,7 @@ git clone git@github.com:beremour/racket-hello-world.git
 cd racket-hello-world
 git config user.name "beremour"
 git config user.email "user@email.com"
+git config push.default simple
 --
 git add %file_path%
 git commit -m "%commit_message%"
