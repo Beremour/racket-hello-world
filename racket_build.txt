@@ -1,0 +1,52 @@
+#
+# https://groups.google.com/forum/#!topic/racket-users/mQFblTgLOrg
+#
+The build part is nearly identical.  Here are the build steps that
+you'd use in *both* cases, with sample directory names -- steps that
+are different are marked with "PRFX" for a --prefix build and "INPL"
+for an in-place one:
+
+       cd /tmp
+       tar xzf racket-5.1-src-unix.tgz
+       cd racket-5.1/src
+       mkdir build
+       cd build
+  PRFX ../configure --prefix /usr/local/racket-5.1
+  INPL ../configure
+       make
+       make install
+       cd /tmp
+  PRFX rm -rf racket-5.1
+  INPL rm -rf racket-5.1/src # <-- optional
+  INPL mv racket-5.1 /usr/local
+
+The differences at this point are:
+
+* In the prefix case, you cannot move the resulting directory.  In the
+  in-place case it can move -- and it can be accessed by different
+  paths.  (For example, you mount /usr/local as /mnt/server/local on a
+  second machine, and then run /mnt/server/local/racket-5.1/racket)
+
+* In the prefix case, things are spread in an FHS-like way:
+  - executables:   /usr/local/racket-5.1/bin/*
+  - collections:   /usr/local/racket-5.1/lib/racket/collects/*
+  - documentation: /usr/local/racket-5.1/share/racket/doc/*
+  - libraries:     /usr/local/racket-5.1/lib/*
+               and /usr/local/racket-5.1/lib/racket/*
+  - includes:      /usr/local/racket-5.1/include/racket
+  - man pages:     /usr/local/racket-5.1/share/man/man1/*
+  and in the in-place case you get a simpler tree in your resulting
+  directory:
+  - executables:   /usr/local/racket-5.1/bin/*
+  - collections:   /usr/local/racket-5.1/collects/*
+  - documentation: /usr/local/racket-5.1/doc/*
+  - libraries:     /usr/local/racket-5.1/lib/*
+  - includes:      /usr/local/racket-5.1/include/*
+  - man pages:     /usr/local/racket-5.1/man/*
+
+* In the racket case, the directory layout corresponds to the source,
+  so you can keep the .git directory, easily create patches, etc.
+
+IMO, these are all advantages for the in-place side.  They're minor,
+but since building involves the same efforst, I prefer the better
+option
