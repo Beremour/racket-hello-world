@@ -1,0 +1,46 @@
+#
+# http://yum.postgresql.org/
+sudo rpm -ihv http://yum.postgresql.org/9.4/redhat/rhel-6-x86_64/pgdg-oraclelinux94-9.4-1.noarch.rpm
+sudo yum install postgresql94-server
+sudo yum install postgresql94-devel
+sudo yum install git
+sudo groupadd devel
+sudo useradd devel -g devel
+sudo usermod -d /usr/local/src devel
+sudo chown -R devel:devel /usr/local/src
+..
+ssh-keygen
+git clone git@github.com:beremour/racket-hello-world.git
+cd racket-hello-world
+git config user.name "beremour"
+git config user.name "Sergey Yudin"
+git config user.email "user@email.com"
+git config push.default simple
+
+#
+$ sysctl -w kernel.shmmax=17179869184
+$ sysctl -w kernel.shmall=4194304
+pg_ctl initdb -o "--locale=en_US.UTF-8 -U system -W" ; # will ask password for new superuser
+pg_ctl start			(service postgresql-9.4 start)
+pg_ctl stop -m immediate	(service postgresql-9.4 stop)
+sudo mkdir -p /var/data/pgdisk01/data; sudo chown -R postgres:postgres /var/data/pgdisk01/data;
+sudo mkdir -p /var/data/pgdisk02/indx; sudo chown -R postgres:postgres /var/data/pgdisk02/indx;
+sudo mkdir -p /var/data/pgdisk03/logs; sudo chown -R postgres:postgres /var/data/pgdisk03/logs;
+#
+CREATE ROLE wbuser   WITH NOLOGIN;
+CREATE ROLE wbadmin  WITH NOLOGIN;
+CREATE ROLE wbowner WITH LOGIN PASSWORD 'owner';
+CREATE TABLESPACE wbdata OWNER wbowner LOCATION '/var/data/pgdisk01/data';
+CREATE TABLESPACE wbindx OWNER wbowner LOCATION '/var/data/pgdisk02/indx';
+CREATE TABLESPACE wblogs OWNER wbowner LOCATION '/var/data/pgdisk03/logs';
+#
+CREATE DATABASE wbank
+  WITH OWNER wbowner
+  ENCODING 'UTF8'
+  LC_COLLATE = 'ru_RU.UTF-8'
+  LC_CTYPE = 'ru_RU.UTF-8'
+  TEMPLATE = template0
+  TABLESPACE = wbdata
+;
+#
+# pg_hba.conf
