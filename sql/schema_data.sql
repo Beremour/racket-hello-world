@@ -1,2 +1,5 @@
-INSERT INTO gl_acct
-VALUES (1,1234,4702810300000000937,null,-1,date '2015-09-15',null,2);
+BEGIN;
+INSERT INTO gl_acct VALUES (1,1234,4702810300000000938,null,-1,date '2015-09-15',null,2);
+INSERT INTO gl_acct VALUES (1,1234,4702810300000000939,null,-1,date '2015-09-15',null,2);
+COMMIT;
+select * from gl_acct;
