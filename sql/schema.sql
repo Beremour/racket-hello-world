@@ -11,5 +11,4 @@ CREATE TABLE gl_acct (
 );
 COMMENT ON TABLE  gl_acct		IS 'Счета';
 COMMENT ON COLUMN gl_acct.ap		IS '-1/1 Active/Passive';
-
 COMMENT ON COLUMN gl_acct.usage		IS 'Расчётный, транзитный, депозитный...';
