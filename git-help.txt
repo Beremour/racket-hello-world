@@ -12,12 +12,22 @@ git config user.name "beremour"
 git config user.name "Sergey Yudin"
 git config user.email "user@email.com"
 git config push.default simple
+git config alias.nccommit 'commit -a --allow-empty-message -m ""'
+
 ...
 git add README.md
-git commit -m "Commit comment"
+git commit -a -m "Greate commit on $(date +"%Y-%m-%d %H:%M:%S")"
 git push
 git push origin master
 ...
 git log
 git log --name-only
 ```
+You can do
+* git add -u so that it will stage the modified and deleted files
+You can also do:
+* git commit -a
+to commit only the modified and deleted files
+
+git log --oneline -5 --author="Sergey Yudin"
+git log --oneline -5 --author=beremour@gmail.com
