@@ -1,0 +1,7 @@
+SHELL=/bin/bash
+# PATH=/sbin:/bin:/usr/sbin:/usr/bin
+# HOME=/
+# MAILTO=root
+# -l (login) will load ~/.profile
+#
+44 14 * * * /bin/bash -l -c ". ~/crontab.cmd;"
