@@ -19,24 +19,36 @@
 (number->string 255 16)
 
 (define pgc
-  (postgresql-connect #:user "wbowner"
-                      #:database "wbank"
-                      #:password "owner")
+  (postgresql-connect #:user      "wbowner"
+                      #:database  "wbank"
+                      #:password  "owner"
+                      #:server    "api"
+                      #:port       5432
+  )
 )
 
 (define cursor-accounts
   (prepare pgc "select acc,open_date from gl_acct where acc > $1")
 )
+(define acc-mask 4702810300000000937)
 
-;(for ((
-;(acc open-date) (in-query pgc cursor-accounts 777)
-;     ))
-;  (printf "~a: ~a:\n" acc open-date)
-;)
 (for ((
-(acc open-date) (in-query pgc (bind-prepared-statement cursor-accounts '(4702810300000000937))  )
+(acc open-date) (in-query pgc cursor-accounts acc-mask)
+     ))
+  (printf "~a: ~a:\n" acc open-date)
+)
+
+(let acc-mask 4702810300000000938)
+
+(for ((
+(acc open-date) (in-query pgc cursor-accounts acc-mask)
      ))
   (printf "~a: ~a:\n" acc open-date)
 )
 
 (disconnect pgc)
+
+(module+ test
+  (require rackunit)
+  (check-equal? 1 1)
+)
