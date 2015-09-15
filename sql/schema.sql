@@ -10,5 +10,5 @@ CREATE TABLE gl_acct (
 ,CONSTRAINT gl_acct_pk PRIMARY KEY(acc) USING INDEX TABLESPACE wbindx
 );
 COMMENT ON TABLE  gl_acct		IS 'Счета';
-COMMENT ON COLUMN gl_acct.ap		IS '-1/1 Active/Passive';
+COMMENT ON COLUMN gl_acct.ap		IS '1/-1 Active/Passive';
 COMMENT ON COLUMN gl_acct.usage		IS 'Расчётный, транзитный, депозитный...';
