@@ -30,17 +30,13 @@
 (define cursor-accounts
   (prepare pgc "select acc,open_date from gl_acct where acc > $1")
 )
-(define acc-mask 4702810300000000937)
 
-(for ((
-(acc open-date) (in-query pgc cursor-accounts acc-mask)
-     ))
-  (printf "~a: ~a:\n" acc open-date)
+(for ([i (in-naturals 1)] [acc-mask '(4702810300000000937 4702810300000000938)])
+  (printf "~a ~a\n" i "Header: --------------")
+  (for ([ (acc open-date) (in-query pgc cursor-accounts acc-mask) ])
+    (printf "~a ~a\n" acc open-date)
+  )
 )
 
 (disconnect pgc)
-
-(module+ test
-  (require rackunit)
-  (check-equal? 1 1)
-)
+(exit)
