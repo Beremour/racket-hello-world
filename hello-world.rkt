@@ -38,14 +38,6 @@
   (printf "~a: ~a:\n" acc open-date)
 )
 
-(let acc-mask 4702810300000000938)
-
-(for ((
-(acc open-date) (in-query pgc cursor-accounts acc-mask)
-     ))
-  (printf "~a: ~a:\n" acc open-date)
-)
-
 (disconnect pgc)
 
 (module+ test
