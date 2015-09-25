@@ -3,10 +3,14 @@
 ; raco exe  $*
 ; raco exe --gui $*
 #lang racket/base
-(require db/base)
-(require db/postgresql)
+(require	db/base
+		db/postgresql
+)
 
-(require "hello-world-mod1.rkt" "hello-world-mod2.rkt")
+(require "hello-world-mod1.rkt"
+         "hello-world-mod2.rkt"
+)
+
 (+ b c)
 (* b c)
 (+ b c b c b)
