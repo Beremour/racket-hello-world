@@ -31,3 +31,5 @@ to commit only the modified and deleted files
 
 git log --oneline -5 --author="Sergey Yudin"
 git log --oneline -5 --author=beremour@gmail.com
+
+git ls-tree --full-tree -r HEAD
